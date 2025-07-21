@@ -10,7 +10,7 @@ A modern, responsive portfolio website showcasing my professional experience, sk
 
 - **Responsive Design**: Optimized for all devices and screen sizes
 - **Modern UI/UX**: Clean, professional design with smooth animations
-- **Interactive Sections**: 
+- **Interactive Sections**:
   - Hero section with key information
   - About me with professional summary
   - Skills showcase with proficiency levels
@@ -141,9 +141,9 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 📞 Contact
 
-- **Email**: your.email@example.com
-- **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)
-- **GitHub**: [Your GitHub Profile](https://github.com/yourusername)
+- **Email**: josiahpeter29@gmail.com
+- **LinkedIn**: [Your LinkedIn Profile](https://linkedin.com/in/josiah-peter-james-4a3118209)
+- **GitHub**: [Your GitHub Profile](https://github.com/syn857)
 - **Location**: Kuching, Sarawak, Malaysia
 
 ---
