@@ -4,7 +4,7 @@ A modern, responsive portfolio website showcasing my professional experience, sk
 
 ## 🚀 Live Demo
 
-[View Portfolio](https://your-portfolio-url.com) <!-- Update with your actual deployment URL -->
+[View Portfolio](https://resume-beryl-psi.vercel.app) <!-- Update with your actual deployment URL -->
 
 ## 📋 Features
 
