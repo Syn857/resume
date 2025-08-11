@@ -1,5 +1,6 @@
 import React from 'react';
-import { ExternalLink, Github, Calendar, Users, Code, Award } from 'lucide-react';
+import { ExternalLink, Github, Calendar, Users, Code, Award, Rocket, Zap } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Projects: React.FC = () => {
   const projects = [
@@ -44,146 +45,193 @@ const Projects: React.FC = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-white">
-      <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto">
+    <section id="projects" className="py-20 relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-b from-purple-900/30 to-slate-900/50" />
+      <div className="absolute top-40 right-20 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-40 left-20 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div>
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-              Featured <span className="text-blue-600">Projects</span>
+          <motion.div
+            className="text-center mb-16"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-purple-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent mb-6">
+              Featured Projects
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
               A showcase of significant projects and achievements throughout my career, 
               demonstrating expertise across different technologies and domains
             </p>
-          </div>
+          </motion.div>
 
           {/* Project Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
             {projectStats.map((stat, index) => (
-              <div key={index} className="text-center p-6 bg-blue-50 rounded-xl">
-                <div className="text-blue-600 mb-3 flex justify-center">{stat.icon}</div>
-                <div className="text-3xl font-bold text-gray-800 mb-1">{stat.value}</div>
-                <div className="text-sm text-gray-600">{stat.label}</div>
-              </div>
+              <motion.div
+                key={index}
+                className="group text-center p-6 bg-white/5 rounded-2xl border border-white/10 hover:border-purple-500/30 transition-all duration-500"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.05, y: -5 }}
+              >
+                <div className="p-3 rounded-xl bg-gradient-to-br from-purple-600 to-cyan-600 mb-4 mx-auto w-fit group-hover:shadow-lg transition-shadow duration-300">
+                  <div className="text-white">{stat.icon}</div>
+                </div>
+                <div className="text-3xl font-bold text-white mb-1 group-hover:text-purple-200 transition-colors duration-300">{stat.value}</div>
+                <div className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300">{stat.label}</div>
+                
+                {/* Glow effect */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-purple-600/20 to-cyan-600/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+              </motion.div>
             ))}
           </div>
 
           {/* Projects Grid */}
           <div className="space-y-12">
             {projects.map((project, index) => (
-              <div key={index} className="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow duration-300">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                  {/* Project Info */}
-                  <div className="lg:col-span-2">
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <h3 className="text-2xl font-bold text-gray-800 mb-2">
-                          {project.title}
-                        </h3>
-                        <div className="flex items-center text-blue-600 font-semibold mb-2">
-                          <span>{project.company}</span>
-                          <span className="mx-2">•</span>
-                          <span>{project.period}</span>
+              <motion.div
+                key={index}
+                className="group relative bg-white/5 rounded-2xl border border-white/10 overflow-hidden hover:border-purple-500/30 transition-all duration-500"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ scale: 1.02, y: -5 }}
+              >
+                {/* Glow effect */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-purple-600/20 to-cyan-600/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+                
+                <div className="p-8 relative z-10">
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    {/* Project Info */}
+                    <div className="lg:col-span-2">
+                      <div className="flex items-start justify-between mb-4">
+                        <div>
+                          <h3 className="text-2xl font-bold text-white group-hover:text-purple-200 transition-colors duration-300 mb-2">
+                            {project.title}
+                          </h3>
+                          <div className="flex items-center text-cyan-400 font-semibold mb-2">
+                            <span>{project.company}</span>
+                            <span className="mx-2">•</span>
+                            <span>{project.period}</span>
+                          </div>
+                          <div className="flex items-center space-x-4 mb-4">
+                            <span className="bg-gradient-to-r from-purple-600/20 to-cyan-600/20 text-purple-200 px-3 py-1 rounded-full text-sm font-medium border border-purple-500/30">
+                              {project.type}
+                            </span>
+                            <span className="bg-gradient-to-r from-green-600/20 to-emerald-600/20 text-green-200 px-3 py-1 rounded-full text-sm font-medium border border-green-500/30">
+                              {project.status}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex items-center space-x-4 mb-4">
-                          <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
-                            {project.type}
-                          </span>
-                          <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium">
-                            {project.status}
-                          </span>
-                        </div>
+                      </div>
+
+                      <p className="text-gray-300 leading-relaxed mb-6 group-hover:text-gray-200 transition-colors duration-300">
+                        {project.description}
+                      </p>
+
+                      {/* Key Achievements */}
+                      <div className="mb-6">
+                        <h4 className="text-lg font-semibold text-white mb-3 group-hover:text-purple-200 transition-colors duration-300">Key Achievements:</h4>
+                        <ul className="space-y-2">
+                          {project.achievements.map((achievement, achIndex) => (
+                            <li key={achIndex} className="flex items-start">
+                              <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-cyan-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                              <span className="text-gray-300 group-hover:text-gray-200 transition-colors duration-300">{achievement}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
                     </div>
 
-                    <p className="text-gray-700 leading-relaxed mb-6">
-                      {project.description}
-                    </p>
+                    {/* Technologies & Actions */}
+                    <div className="lg:col-span-1">
+                      <div className="bg-white/5 rounded-xl p-6 border border-white/10">
+                        <h4 className="text-lg font-semibold text-white mb-4 group-hover:text-purple-200 transition-colors duration-300">Technologies Used</h4>
+                        <div className="flex flex-wrap gap-2 mb-6">
+                          {project.technologies.map((tech, techIndex) => (
+                            <span 
+                              key={techIndex}
+                              className="bg-gradient-to-r from-purple-600/20 to-cyan-600/20 text-purple-200 px-3 py-1 rounded-full text-sm font-medium border border-purple-500/30"
+                            >
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
 
-                    {/* Key Achievements */}
-                    <div className="mb-6">
-                      <h4 className="text-lg font-semibold text-gray-800 mb-3">Key Achievements:</h4>
-                      <ul className="space-y-2">
-                        {project.achievements.map((achievement, achIndex) => (
-                          <li key={achIndex} className="flex items-start">
-                            <div className="w-2 h-2 bg-blue-600 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                            <span className="text-gray-700">{achievement}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-
-                  {/* Technologies & Actions */}
-                  <div className="lg:col-span-1">
-                    <div className="bg-white rounded-lg p-6">
-                      <h4 className="text-lg font-semibold text-gray-800 mb-4">Technologies Used</h4>
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {project.technologies.map((tech, techIndex) => (
-                          <span 
-                            key={techIndex}
-                            className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Action Buttons */}
-                      <div className="space-y-3">
-                        {project.liveUrl && (
-                          <a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center justify-center w-full px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-xl hover:from-green-700 hover:to-green-800 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                          >
-                            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                            View Live Project
-                          </a>
-                        )}
-                        <button className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
-                          <ExternalLink className="h-5 w-5" />
-                          <span>View Details</span>
-                        </button>
-                        {project.type === "Mobile Application" && (
-                          <button className="w-full px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-xl hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 transition-all duration-300 font-semibold shadow-sm hover:shadow-md transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
-                            <Github className="h-5 w-5" />
-                            <span>Case Study</span>
+                        {/* Action Buttons */}
+                        <div className="space-y-3">
+                          {project.liveUrl && (
+                            <a
+                              href={project.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center justify-center w-full px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                            >
+                              <Rocket className="w-5 h-5 mr-2" />
+                              View Live Project
+                            </a>
+                          )}
+                          <button className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-xl hover:from-purple-700 hover:to-cyan-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                            <ExternalLink className="h-5 w-5" />
+                            <span>View Details</span>
                           </button>
-                        )}
+                          {project.type === "Mobile Application" && (
+                            <button className="w-full px-6 py-3 border-2 border-white/20 text-gray-300 rounded-xl hover:border-purple-500/50 hover:text-white hover:bg-purple-600/20 transition-all duration-300 font-semibold shadow-sm hover:shadow-md transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                              <Github className="h-5 w-5" />
+                              <span>Case Study</span>
+                            </button>
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {/* Call to Action */}
-          <div className="mt-16 text-center bg-blue-50 rounded-xl p-8">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">
-              Interested in My Work?
-            </h3>
-            <p className="text-gray-700 mb-6 max-w-2xl mx-auto">
-              These projects represent just a portion of my experience. I'm always excited to discuss 
-              new challenges and opportunities to create innovative solutions.
-            </p>
-            <button 
-              onClick={() => {
-                const element = document.getElementById('contact');
-                if (element) {
-                  element.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-              className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-semibold"
-            >
-              Let's Discuss Your Project
-            </button>
-          </div>
+          <motion.div
+            className="mt-16 text-center bg-white/5 rounded-2xl p-8 border border-white/10 relative overflow-hidden"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            {/* Background glow */}
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-cyan-600/10 rounded-2xl" />
+            
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Interested in My Work?
+              </h3>
+              <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+                These projects represent just a portion of my experience. I'm always excited to discuss 
+                new challenges and opportunities to create innovative solutions.
+              </p>
+              <button 
+                onClick={() => {
+                  const element = document.getElementById('contact');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }}
+                className="bg-gradient-to-r from-purple-600 to-cyan-600 text-white px-8 py-3 rounded-xl hover:from-purple-700 hover:to-cyan-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 flex items-center justify-center space-x-2 mx-auto"
+              >
+                <Zap className="h-5 w-5" />
+                <span>Let's Discuss Your Project</span>
+              </button>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

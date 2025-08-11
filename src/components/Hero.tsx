@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download, ArrowRight, MapPin, Clock, DollarSign } from 'lucide-react';
+import { Download, ArrowRight, MapPin, Clock, Award } from 'lucide-react';
 
 const Hero: React.FC = () => {
   const scrollToContact = () => {
@@ -9,14 +9,23 @@ const Hero: React.FC = () => {
     }
   };
 
+  const downloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/Josiah_Peter_James_CV.pdf';
+    link.download = 'Josiah_Peter_James_CV.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 z-30">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] bg-repeat"></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-6 relative z-40">
         <div className="max-w-4xl mx-auto text-center">
           {/* Status Badge */}
           <div className="inline-flex items-center space-x-2 bg-green-500/20 text-green-300 px-4 py-2 rounded-full text-sm font-medium mb-8">
@@ -49,32 +58,35 @@ const Hero: React.FC = () => {
               <p className="text-xs text-blue-200">4 weeks</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 text-white">
-              <DollarSign className="h-5 w-5 text-blue-300 mx-auto mb-2" />
-              <p className="text-sm font-medium">Expected Salary</p>
-              <p className="text-xs text-blue-200">MYR 7,000/month</p>
+              <Award className="h-5 w-5 text-blue-300 mx-auto mb-2" />
+              <p className="text-sm font-medium">Experience</p>
+              <p className="text-xs text-blue-200">8+ Years</p>
             </div>
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-6 mb-8 sm:mb-16">
             <button
               onClick={scrollToContact}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-200 transform hover:scale-105 flex items-center space-x-2"
+              className="relative z-50 bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-200 transform hover:scale-105 flex items-center space-x-2 w-full sm:w-auto justify-center touch-manipulation"
             >
               <span>Let's Work Together</span>
-              <ArrowRight className="h-5 w-5" />
+              <ArrowRight className="h-4 w-4 sm:h-5 sm:w-5" />
             </button>
             
-            <button className="border-2 border-white/30 hover:border-white/50 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-200 transform hover:scale-105 flex items-center space-x-2">
-              <Download className="h-5 w-5" />
+            <button 
+              onClick={downloadCV}
+              className="relative z-50 border-2 border-white/30 hover:border-white/50 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold transition-all duration-200 transform hover:scale-105 flex items-center justify-center space-x-2 w-full sm:w-auto touch-manipulation"
+            >
+              <Download className="h-4 w-4 sm:h-5 sm:w-5" />
               <span>Download CV</span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+      {/* Scroll Indicator - Hidden on mobile to prevent interference */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden sm:block z-10">
         <div className="animate-bounce">
           <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
             <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
