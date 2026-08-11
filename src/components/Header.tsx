@@ -7,11 +7,24 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
+    let animationFrame = 0
+    let ticking = false
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      if (ticking) return
+      ticking = true
+      animationFrame = window.requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 50)
+        ticking = false
+      })
     }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.cancelAnimationFrame(animationFrame)
+    }
   }, [])
 
   const scrollToSection = (sectionId: string) => {
