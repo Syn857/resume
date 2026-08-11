@@ -71,10 +71,9 @@ class ContentAPI {
         featured: true
       },
       media: {
-        thumbnail: 'https://trae-api-sg.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20wedding%20RSVP%20application%20interface%20elegant%20design&image_size=landscape_16_9',
+        thumbnail: '/kymdom-wedding-rsvp.png',
         gallery: [
-          'https://trae-api-sg.mchost.guru/api/ide/v1/text_to_image?prompt=wedding%20RSVP%20form%20interface%20beautiful%20design&image_size=landscape_4_3',
-          'https://trae-api-sg.mchost.guru/api/ide/v1/text_to_image?prompt=wedding%20guest%20management%20dashboard&image_size=landscape_4_3'
+          '/kymdom-wedding-rsvp.png'
         ]
       },
       seo: {
@@ -101,7 +100,7 @@ class ContentAPI {
         featured: true
       },
       media: {
-        thumbnail: 'https://trae-api-sg.mchost.guru/api/ide/v1/text_to_image?prompt=enterprise%20CRM%20dashboard%20modern%20interface%20business&image_size=landscape_16_9'
+        thumbnail: ''
       }
     },
     {

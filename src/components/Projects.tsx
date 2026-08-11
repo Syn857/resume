@@ -5,20 +5,24 @@ import { motion } from 'framer-motion';
 const Projects: React.FC = () => {
   const projects = [
     {
-      title: "Wedding RSVP Application",
-      company: "Personal Project",
-      period: "2025",
-      description: "A beautiful and functional wedding RSVP web application featuring multi-language support, guest management, and elegant UI design for celebrating special moments.",
-      technologies: ["React", "TypeScript", "Tailwind CSS", "Vite", "Responsive Design"],
+      title: "Kymdom Wedding RSVP & Photo Platform",
+      company: "Independent Full-Stack Project",
+      period: "2025 - 2026",
+      description: "A production wedding platform for Dominic and Kemberly that combines a bilingual invitation and RSVP flow with guest photo uploads, a public gallery, face-assisted photo discovery, and administrative attendance management.",
+      technologies: ["React", "TypeScript", "Cloudflare Workers", "Workers KV", "R2", "TensorFlow.js", "Tailwind CSS"],
       achievements: [
-        "Multi-language interface (English/Local)",
-        "Responsive wedding-themed design",
-        "Guest RSVP management system",
-        "Live deployment and hosting"
+        "Bilingual English and Iban invitation experience",
+        "Full RSVP, guest-count, attendance, and admin workflows",
+        "R2 photo uploads, gallery downloads, and ZIP generation",
+        "Browser-based face grouping to help guests find their photos",
+        "Migrated the full stack from Vercel to Cloudflare Workers"
       ],
       type: "Web Application",
-      status: "Live",
-      liveUrl: "https://www.celebrate-the-kymdom.xyz/"
+      status: "Live on Cloudflare",
+      liveUrl: "https://kymdom.josiahpeter29.workers.dev",
+      sourceUrl: "https://github.com/Syn857/weddingRsvp",
+      image: "/kymdom-wedding-rsvp.png",
+      imageAlt: "Kymdom wedding invitation for Dominic and Kemberly"
     },
     {
       title: "Enterprise CRM System",
@@ -108,6 +112,17 @@ const Projects: React.FC = () => {
               >
                 {/* Glow effect */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-purple-600/20 to-cyan-600/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+
+                {project.image && (
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="block overflow-hidden border-b border-white/10">
+                    <img
+                      src={project.image}
+                      alt={project.imageAlt}
+                      className="w-full h-56 sm:h-72 object-cover object-center transition-transform duration-700 group-hover:scale-[1.02]"
+                      loading="lazy"
+                    />
+                  </a>
+                )}
                 
                 <div className="p-8 relative z-10">
                   <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -180,10 +195,22 @@ const Projects: React.FC = () => {
                               View Live Project
                             </a>
                           )}
-                          <button className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-xl hover:from-purple-700 hover:to-cyan-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
-                            <ExternalLink className="h-5 w-5" />
-                            <span>View Details</span>
-                          </button>
+                          {project.sourceUrl ? (
+                            <a
+                              href={project.sourceUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-xl hover:from-purple-700 hover:to-cyan-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center space-x-2"
+                            >
+                              <Github className="h-5 w-5" />
+                              <span>View Source Code</span>
+                            </a>
+                          ) : (
+                            <button className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-cyan-600 text-white rounded-xl hover:from-purple-700 hover:to-cyan-700 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                              <ExternalLink className="h-5 w-5" />
+                              <span>View Details</span>
+                            </button>
+                          )}
                           {project.type === "Mobile Application" && (
                             <button className="w-full px-6 py-3 border-2 border-white/20 text-gray-300 rounded-xl hover:border-purple-500/50 hover:text-white hover:bg-purple-600/20 transition-all duration-300 font-semibold shadow-sm hover:shadow-md transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
                               <Github className="h-5 w-5" />
