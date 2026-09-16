@@ -1,57 +1,31 @@
-# React + TypeScript + Vite
+# Josiah Peter James portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + TypeScript + Vite. Homepage renders to static HTML during the build, then hydrates for navigation. Agency page is static HTML.
 
-Currently, two official plugins are available:
+## Local development
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```sh
+npm ci
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Production checks
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  extends: [
-    // other configs...
-    // Enable lint rules for React
-    reactX.configs['recommended-typescript'],
-    // Enable lint rules for React DOM
-    reactDom.configs.recommended,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```sh
+npm run lint
+npm run build
+npm run preview -- --port 5173
 ```
+
+Build runs `tests/seo.mjs` to check prerendered content, distinct titles, canonical URLs, schema, assets, sitemap, and the 404 page. With Playwright and Edge available, run `node tests/portfolio.cjs` against the preview to check hydration, no-JavaScript content, responsive layout, and keyboard navigation. An external Playwright installation can be provided through `NODE_PATH`.
+
+## Cloudflare Pages
+
+- Repository root: this directory.
+- Build command: `npm run build`.
+- Output directory: `dist`.
+- Publish the complete output, including `404.html`. Its presence disables Pages' default homepage fallback for unknown paths.
+
+After deploying, confirm homepage source contains its heading and projects, `/agency-support/` returns 200, and an unknown path returns 404. Submit `https://josiah-peter-james.pages.dev/sitemap.xml` in Google Search Console and inspect both page URLs. Search Console access and field Core Web Vitals are separate from local build checks.
+
+Canonical URLs use `https://josiah-peter-james.pages.dev/`. If the primary domain changes, update metadata, JSON-LD, robots.txt, sitemap.xml, and SEO checks together. Sitemap intentionally omits `lastmod` rather than publishing stale dates.
