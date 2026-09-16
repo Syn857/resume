@@ -53,33 +53,39 @@
     }
     </script>
     <style>
-      :root { color: #12233f; background: #f5f3ed; font-family: Arial, sans-serif; }
+      @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+      :root { color: #183c31; background: #f7f9f7; font-family: 'DM Sans', sans-serif; }
       * { box-sizing: border-box; }
-      body { margin: 0; }
-      a { color: inherit; }
+      body { margin: 0; min-width: 320px; }
+      a { color: inherit; text-underline-offset: 5px; }
+      :focus-visible { outline: 3px solid #7a982c; outline-offset: 5px; }
       .wrap { width: min(1040px, calc(100% - 40px)); margin: auto; }
-      header { padding: 22px 0; border-bottom: 1px solid #dcd9d0; }
+      header { padding: 22px 0; border-bottom: 1px solid #d5dfd7; }
       header .wrap { display: flex; justify-content: space-between; gap: 20px; align-items: center; }
       .brand, .cta { font-weight: 700; text-decoration: none; }
-      .cta { padding: 12px 17px; color: white; background: #12233f; border-radius: 99px; }
+      .cta { display: inline-flex; align-items: center; min-height: 44px; padding: 12px 20px; color: #f7f9f7; background: #183c31; }
+      .cta:hover { background: #365f4c; }
       main { padding: 90px 0; }
-      .eyebrow { margin: 0 0 18px; color: #255cf4; font-size: 12px; font-weight: 800; letter-spacing: .14em; }
-      h1, h2, h3 { letter-spacing: -.04em; }
+      .eyebrow { margin: 0 0 18px; color: #57675e; font-size: 11px; font-weight: 600; letter-spacing: .12em; }
+      h1, h2, h3 { font-family: 'Manrope', sans-serif; font-weight: 500; letter-spacing: -.05em; }
       h1 { max-width: 760px; margin: 0; font-size: clamp(42px, 7vw, 72px); line-height: 1; }
-      .intro { max-width: 690px; color: #5f6b7d; font-size: 19px; line-height: 1.65; }
+      .intro { max-width: 690px; color: #57675e; font-size: 18px; line-height: 1.8; }
       .grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 50px; margin-top: 60px; }
-      .how, .offer { border: 1px solid #dcd9d0; }
-      .how { padding: 34px; background: #e8eeff; }
-      .how li { margin: 15px 0; color: #33415b; line-height: 1.55; }
-      .offer { padding: 23px; border-bottom: 0; background: #fbfaf7; }
-      .offer:last-child { border-bottom: 1px solid #dcd9d0; }
-      .offer p { margin-bottom: 0; color: #5f6b7d; line-height: 1.55; }
-      .price { color: #255cf4; font-size: 13px; font-weight: 800; }
-      .proof { margin-top: 60px; padding-top: 30px; border-top: 1px solid #dcd9d0; }
+      .how { padding: 34px; background: #e1e8df; align-self: start; }
+      .how ul { padding-left: 18px; }
+      .how li { margin: 18px 0; color: #36523d; line-height: 1.75; }
+      .offer { padding: 26px 0; border-top: 1px solid #d5dfd7; }
+      .offer:last-child { border-bottom: 1px solid #d5dfd7; }
+      .offer h3 { font-size: 24px; margin-block: 12px; }
+      .offer p { margin-bottom: 0; color: #57675e; line-height: 1.75; }
+      .price { color: #365f4c; font-size: 13px; font-weight: 600; }
+      .proof { margin-top: 70px; padding-top: 30px; border-top: 1px solid #d5dfd7; }
       .proof-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-      .proof-grid article { padding: 20px; background: #fbfaf7; border: 1px solid #dcd9d0; }
-      .proof-grid p { color: #5f6b7d; line-height: 1.55; }
-      footer { padding: 42px 0; color: white; background: #0d1d37; }
+      .proof-grid article { padding: 10px 20px 10px 0; }
+      .proof-grid h3 { font-size: 23px; }
+      .proof-grid p { color: #57675e; line-height: 1.75; }
+      footer { padding: 42px 0; color: #183c31; background: #d4ee98; line-height: 1.8; }
+      footer a { display: inline-block; min-height: 44px; overflow-wrap: anywhere; }
       @media (max-width: 720px) { .grid, .proof-grid { grid-template-columns: 1fr; } main { padding: 60px 0; } header .wrap { align-items: flex-start; flex-direction: column; } }
     </style>
   </head>
