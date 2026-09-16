@@ -1,35 +1,29 @@
 import {
   ArrowUpRight,
   Check,
-  Code2,
   Github,
-  Globe2,
   Linkedin,
   Mail,
   Menu,
   MessageCircle,
-  ServerCog,
   X,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 
 const EMAIL = "josiahpeter29@gmail.com";
 
 const capabilities = [
   {
-    icon: Code2,
     title: "Web apps & dashboards",
     text: "Practical internal tools, booking flows, customer portals and admin systems built around real business workflows.",
     tools: "Laravel · PHP · MySQL · React · Vue",
   },
   {
-    icon: Globe2,
     title: "Business websites",
     text: "Fast, polished websites that are easy to manage and designed to turn attention into enquiries.",
     tools: "WordPress · Elementor · JavaScript · SEO",
   },
   {
-    icon: ServerCog,
     title: "Performance & delivery",
     text: "Careful debugging, API integrations, cloud deployment and performance work that keeps products dependable.",
     tools: "Cloudflare · REST APIs · Git · CI/CD",
@@ -80,37 +74,38 @@ const agencyOffers = [
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 16);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const menuButton = useRef<HTMLButtonElement>(null);
 
   const closeMenu = () => setMenuOpen(false);
 
   return (
     <div className="site-shell">
-      <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+      <a className="skip-link" href="#top">Skip to content</a>
+      <header className="site-header" onKeyDown={(event) => {
+        if (event.key === "Escape" && menuOpen) {
+          closeMenu();
+          menuButton.current?.focus();
+        }
+      }}>
         <div className="container header-inner">
           <a className="brand" href="#top" aria-label="Josiah Peter James, home" onClick={closeMenu}>
             <span>JPJ</span>
-            <small>Full-stack developer</small>
+            <small>Josiah Peter James</small>
           </a>
 
           <button
             className="menu-button"
+            ref={menuButton}
             type="button"
             aria-label={menuOpen ? "Close navigation" : "Open navigation"}
             aria-expanded={menuOpen}
+            aria-controls="main-navigation"
             onClick={() => setMenuOpen((open) => !open)}
           >
             {menuOpen ? <X /> : <Menu />}
           </button>
 
-          <nav className={menuOpen ? "nav-links is-open" : "nav-links"} aria-label="Main navigation">
+          <nav id="main-navigation" className={menuOpen ? "nav-links is-open" : "nav-links"} aria-label="Main navigation">
             <a href="#work" onClick={closeMenu}>Work</a>
             <a href="/agency-support/" onClick={closeMenu}>Agency support</a>
             <a href="#expertise" onClick={closeMenu}>Expertise</a>
@@ -122,42 +117,40 @@ function App() {
         </div>
       </header>
 
-      <main id="top">
+      <main id="top" tabIndex={-1}>
         <section className="hero">
+          <div className="container hero-kicker"><p>Independent full-stack developer</p><p>Kuching, Malaysia · Working worldwide</p></div>
           <div className="container hero-grid">
             <div className="hero-copy">
-              <div className="availability"><span /> Open to freelance projects and remote roles</div>
-              <p className="eyebrow">Full-stack developer · Kuching, Malaysia</p>
-              <h1>Full-stack developer building software for <em>real business work.</em></h1>
+              <h1>Good code.<br />Real <em>impact.</em></h1>
               <p className="hero-intro">
-                I work mainly with Laravel, WordPress and JavaScript. I can take a project from the initial brief through development, deployment and ongoing support.
+                I&apos;m Josiah. I build websites and web applications that make business work better. From the first brief to the final deployment.
               </p>
               <div className="hero-actions">
                 <a className="button button-primary" href="#work">View selected work <ArrowUpRight size={18} /></a>
-                <a className="button button-secondary" href={`mailto:${EMAIL}`}>Email me <Mail size={18} /></a>
+                <a className="button button-secondary" href={`mailto:${EMAIL}`}>Let&apos;s talk <Mail size={18} /></a>
               </div>
               <div className="proof-strip" aria-label="Professional highlights">
-                <div><strong>Since 2015</strong><span>Working professionally</span></div>
-                <div><strong>Kuching</strong><span>Sarawak, Malaysia</span></div>
-                <div><strong>Remote</strong><span>Available worldwide</span></div>
+                <div><strong>Since 2015</strong><span>Building for real businesses</span></div>
+                <div><strong>Brief to launch</strong><span>Frontend, backend & beyond</span></div>
               </div>
             </div>
 
-            <div className="portrait-wrap" aria-label="Portrait of Josiah Peter James">
+            <div className="portrait-wrap">
               <div className="portrait-card">
-                <img src="/profile.jpg" alt="Josiah Peter James, full-stack developer" width="600" height="720" />
-                <div className="portrait-caption"><strong>Josiah Peter James</strong><small>Full-stack developer</small></div>
+                <img src="/profile.jpg" alt="Josiah Peter James, full-stack developer" width="600" height="720" fetchPriority="high" />
+                <div className="portrait-caption"><strong>A person behind the code.</strong><small>Josiah Peter James / Developer</small></div>
               </div>
-              <span className="orbit orbit-one" />
-              <span className="orbit orbit-two" />
+              <div className="availability"><Check size={15} aria-hidden="true" /> Open to freelance projects & remote roles</div>
             </div>
           </div>
+          <div className="container stack-strip"><span>My everyday toolkit</span><p>Laravel <span>/</span> WordPress <span>/</span> React <span>/</span> JavaScript <span>/</span> Cloudflare</p><a href="#work">Explore the work <span aria-hidden="true">↓</span></a></div>
         </section>
 
         <section className="section work-section" id="work">
           <div className="container">
             <div className="section-heading split-heading">
-              <div><p className="eyebrow">Recent work</p><h2>Projects I&apos;ve built.</h2></div>
+              <div><p className="eyebrow">Selected work</p><h2>Built to be used.</h2></div>
               <p>Recent client websites and products across hospitality, corporate services and business operations.</p>
             </div>
 
@@ -167,7 +160,7 @@ function App() {
                 <span className="visual-link"><ArrowUpRight /></span>
               </a>
               <div className="project-copy">
-                <div className="project-meta"><span>01</span><span>Independent full-stack project</span></div>
+                <div className="project-meta"><span>Featured project</span><span>Full-stack development</span></div>
                 <h3>Kymdom Wedding Platform</h3>
                 <p>A bilingual wedding website with RSVP management, guest photo uploads, admin tools and face grouping.</p>
                 <ul className="outcomes">
@@ -248,24 +241,17 @@ function App() {
                 <p>A Laravel system for customer data, reporting and day-to-day operations. It gives the team one place to manage work that previously lived across separate processes.</p>
                 <div className="tags"><span>Laravel</span><span>PHP</span><span>MySQL</span><span>JavaScript</span><span>REST APIs</span></div>
               </div>
-              <div className="system-preview" aria-hidden="true">
-                <div className="preview-top"><i /><i /><i /><span>Operations overview</span></div>
-                <div className="preview-body">
-                  <div className="preview-nav"><b /><b /><b /><b /></div>
-                  <div className="preview-content"><span /><div className="preview-stats"><i /><i /><i /></div><b /><b /><b /></div>
-                </div>
-              </div>
+              <div className="system-summary"><span>Behind the interface</span><p>Customer data.<br />Daily operations.<br />One connected system.</p><small>Laravel / MySQL / REST APIs</small></div>
             </article>
           </div>
         </section>
 
         <section className="section expertise-section" id="expertise">
           <div className="container">
-            <div className="section-heading"><p className="eyebrow">Services</p><h2>What I work on.</h2></div>
+            <div className="section-heading"><p className="eyebrow">How I can help</p><h2>From the interface<br />to the infrastructure.</h2></div>
             <div className="capability-grid">
-              {capabilities.map(({ icon: Icon, title, text, tools }, index) => (
+              {capabilities.map(({ title, text, tools }) => (
                 <article className="capability-card" key={title}>
-                  <div className="capability-top"><span>0{index + 1}</span><Icon /></div>
                   <h3>{title}</h3><p>{text}</p><small>{tools}</small>
                 </article>
               ))}
@@ -278,7 +264,7 @@ function App() {
             <div className="agency-intro">
               <div>
                 <p className="eyebrow">For agencies</p>
-                <h2>A delivery partner for the work that cannot wait.</h2>
+                <h2>Your extra pair<br />of expert hands.</h2>
               </div>
               <p>
                 I support agencies that need reliable WordPress and Laravel delivery without adding a full-time hire. Bring me in for a contained rescue, a performance sprint, or a defined build block.
@@ -288,7 +274,7 @@ function App() {
             <div className="agency-grid">
               <div className="agency-promise">
                 <p className="agency-label">How I work</p>
-                <h3>Clear scope. Calm delivery. No unlimited-support promise.</h3>
+                <h3>Clear scope.<br />Calm delivery.</h3>
                 <ul>
                   <li><Check /> I start with the issue, the desired outcome, and the quickest safe path forward.</li>
                   <li><Check /> You get a written scope, delivery checkpoints, and clear handover notes.</li>
@@ -321,7 +307,7 @@ function App() {
           <div className="container experience-grid">
             <div className="experience-intro">
               <p className="eyebrow">Experience</p>
-              <h2>More than eight years building for clients and product teams.</h2>
+              <h2>A decade of<br />making it work.</h2>
               <p>My work covers frontend development, backend systems, databases, integrations and deployment.</p>
               <a href="/Josiah_Peter_James_CV.pdf" target="_blank" rel="noreferrer">Download résumé <ArrowUpRight size={17} /></a>
             </div>
@@ -339,7 +325,7 @@ function App() {
         <section className="contact-section" id="contact">
           <div className="container contact-inner">
             <p className="eyebrow">Contact</p>
-            <h2>Need a developer?</h2>
+            <h2>Have something<br />worth building?</h2>
             <p>Send me a short note about the project or role. I&apos;ll reply by email.</p>
             <a className="contact-email" href={`mailto:${EMAIL}`}>{EMAIL} <ArrowUpRight /></a>
             <div className="social-links">
@@ -351,7 +337,7 @@ function App() {
         </section>
       </main>
 
-      <footer><div className="container"><span>© {new Date().getFullYear()} Josiah Peter James</span><span>Kuching, Malaysia</span></div></footer>
+      <footer><div className="container"><span>© {new Date().getFullYear()} Josiah Peter James</span><span>Built with care in Kuching, Malaysia.</span><a href="#top">Back to top ↑</a></div></footer>
     </div>
   );
 }
