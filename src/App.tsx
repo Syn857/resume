@@ -1,118 +1,60 @@
-import {
-  ArrowUpRight,
-  Check,
-  Github,
-  Linkedin,
-  Mail,
-  Menu,
-  MessageCircle,
-  X,
-} from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, Menu, MessageCircle, X } from "lucide-react";
 import { useRef, useState } from "react";
 
 const EMAIL = "josiahpeter29@gmail.com";
 
 const capabilities = [
-  {
-    title: "Web apps & dashboards",
-    text: "Practical internal tools, booking flows, customer portals and admin systems built around real business workflows.",
-    tools: "Laravel · PHP · MySQL · React · Vue",
-  },
-  {
-    title: "Business websites",
-    text: "Fast, polished websites that are easy to manage and designed to turn attention into enquiries.",
-    tools: "WordPress · Elementor · JavaScript · SEO",
-  },
-  {
-    title: "Performance & delivery",
-    text: "Careful debugging, API integrations, cloud deployment and performance work that keeps products dependable.",
-    tools: "Cloudflare · REST APIs · Git · CI/CD",
-  },
+  { title: "Business websites", text: "WordPress websites with clear enquiry paths, manageable content, and responsive layouts." },
+  { title: "Custom applications", text: "Laravel dashboards, customer portals, and integrations built around your team's workflow." },
+  { title: "Fixes & performance", text: "Debugging, technical SEO, and deployment support for websites that need attention." },
 ];
 
 const experience = [
-  {
-    period: "2022 — Present",
-    role: "Full-Stack Developer",
-    company: "Tech House Sdn Bhd",
-    detail: "Building and maintaining business-critical web applications with Laravel, PHP, MySQL and modern JavaScript.",
-  },
-  {
-    period: "2016 — 2022",
-    role: "Full-Stack Developer",
-    company: "TheJoeCode · Remote",
-    detail: "Delivered client applications, responsive interfaces, integrations and performance improvements across the full stack.",
-  },
-  {
-    period: "2015 — 2016",
-    role: "iOS Tech Lead",
-    company: "Storie.Inc · Remote",
-    detail: "Led mobile product development and coordinated closely with backend teams on application architecture and APIs.",
-  },
+  { period: "2022 — Present", role: "Full-Stack Developer", company: "Tech House Sdn Bhd" },
+  { period: "2016 — 2022", role: "Full-Stack Developer", company: "TheJoeCode · Remote" },
+  { period: "2015 — 2016", role: "iOS Tech Lead", company: "Storie.Inc · Remote" },
 ];
 
-const agencyOffers = [
-  {
-    number: "01",
-    title: "Paid technical diagnosis",
-    price: "RM350 / US$80",
-    text: "A focused review of the issue, its likely cause, priority, and a clear recommendation before either side commits to a larger scope.",
-  },
-  {
-    number: "02",
-    title: "48-hour website rescue",
-    price: "RM800 - RM1,200",
-    text: "Targeted help for broken forms, checkout issues, deployment failures, inherited WordPress problems, and high-priority bugs.",
-  },
-  {
-    number: "03",
-    title: "Speed or Laravel sprint",
-    price: "RM1,800 - RM3,000",
-    text: "A tightly scoped performance, technical SEO, integration, stability, or custom-feature sprint with an agreed outcome.",
-  },
+const moreProjects = [
+  { title: "SkyBay Integrated", text: "Corporate website organising IT, management, and workforce services.", href: "https://skybay.pages.dev" },
+  { title: "Atelier Noma", text: "Furniture storefront demo with a product catalog and Supabase admin.", href: "https://furniture-better.pages.dev" },
+  { title: "Utaiaku Calculator", text: "Interactive reconstitution calculator with unit conversion and input validation.", href: "https://utaiaku.com" },
 ];
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
-
   const closeMenu = () => setMenuOpen(false);
 
   return (
     <div className="site-shell">
       <a className="skip-link" href="#top">Skip to content</a>
-      <header className="site-header" onKeyDown={(event) => {
-        if (event.key === "Escape" && menuOpen) {
-          closeMenu();
-          menuButton.current?.focus();
-        }
-      }}>
+      <header className="site-header"
+        onBlur={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget)) closeMenu();
+        }}
+        onKeyDown={(event) => {
+          if (event.key === "Escape" && menuOpen) {
+            closeMenu();
+            menuButton.current?.focus();
+          }
+        }}>
         <div className="container header-inner">
           <a className="brand" href="#top" aria-label="Josiah Peter James, home" onClick={closeMenu}>
-            <span>JPJ</span>
-            <small>Josiah Peter James</small>
+            <span>JPJ</span><small>Josiah Peter James</small>
           </a>
-
-          <button
-            className="menu-button"
-            ref={menuButton}
-            type="button"
+          <button className="menu-button" ref={menuButton} type="button"
             aria-label={menuOpen ? "Close navigation" : "Open navigation"}
-            aria-expanded={menuOpen}
-            aria-controls="main-navigation"
-            onClick={() => setMenuOpen((open) => !open)}
-          >
+            aria-expanded={menuOpen} aria-controls="main-navigation"
+            onClick={() => setMenuOpen((open) => !open)}>
             {menuOpen ? <X /> : <Menu />}
           </button>
-
           <nav id="main-navigation" className={menuOpen ? "nav-links is-open" : "nav-links"} aria-label="Main navigation">
             <a href="#work" onClick={closeMenu}>Work</a>
-            <a href="/agency-support/" onClick={closeMenu}>Agency support</a>
-            <a href="#expertise" onClick={closeMenu}>Expertise</a>
+            <a href="#expertise" onClick={closeMenu}>Services</a>
             <a href="#experience" onClick={closeMenu}>Experience</a>
-            <a className="nav-cta" href={`mailto:${EMAIL}`} onClick={closeMenu}>
-              Let&apos;s talk <ArrowUpRight size={16} />
-            </a>
+            <a href="/agency-support/" onClick={closeMenu}>Agency support</a>
+            <a className="nav-cta" href={`mailto:${EMAIL}`} onClick={closeMenu}>Let&apos;s talk <ArrowUpRight size={16} /></a>
           </nav>
         </div>
       </header>
@@ -122,211 +64,108 @@ function App() {
           <div className="container hero-kicker"><p>Independent full-stack developer</p><p>Kuching, Malaysia · Working worldwide</p></div>
           <div className="container hero-grid">
             <div className="hero-copy">
-              <h1>Good code.<br />Real <em>impact.</em></h1>
-              <p className="hero-intro">
-                I&apos;m Josiah. I build websites and web applications that make business work better. From the first brief to the final deployment.
-              </p>
+              <h1>WordPress &amp; Laravel.<br /><em>Built for your business.</em></h1>
+              <p className="hero-intro">I&apos;m Josiah. I build websites and custom applications for agencies and growing businesses, from the first brief to deployment.</p>
               <div className="hero-actions">
                 <a className="button button-primary" href="#work">View selected work <ArrowUpRight size={18} /></a>
                 <a className="button button-secondary" href={`mailto:${EMAIL}`}>Let&apos;s talk <Mail size={18} /></a>
               </div>
-              <div className="proof-strip" aria-label="Professional highlights">
-                <div><strong>Since 2015</strong><span>Building for real businesses</span></div>
-                <div><strong>Brief to launch</strong><span>Frontend, backend & beyond</span></div>
-              </div>
+              <p className="hero-note">Building professionally since 2015. Available for freelance projects.</p>
             </div>
-
             <div className="portrait-wrap">
               <div className="portrait-card">
-                <img src="/profile.jpg" alt="Josiah Peter James, full-stack developer" width="600" height="720" fetchPriority="high" />
-                <div className="portrait-caption"><strong>A person behind the code.</strong><small>Josiah Peter James / Developer</small></div>
+                <img src="/profile.jpg" alt="Josiah Peter James, full-stack developer" width="1024" height="1024" />
+                <div className="portrait-caption"><strong>Josiah Peter James</strong><small>Developer / Kuching, Malaysia</small></div>
               </div>
-              <div className="availability"><Check size={15} aria-hidden="true" /> Open to freelance projects & remote roles</div>
             </div>
           </div>
-          <div className="container stack-strip"><span>My everyday toolkit</span><p>Laravel <span>/</span> WordPress <span>/</span> React <span>/</span> JavaScript <span>/</span> Cloudflare</p><a href="#work">Explore the work <span aria-hidden="true">↓</span></a></div>
         </section>
 
         <section className="section work-section" id="work">
           <div className="container">
-            <div className="section-heading split-heading">
-              <div><p className="eyebrow">Selected work</p><h2>Built to be used.</h2></div>
-              <p>Recent client websites and products across hospitality, corporate services and business operations.</p>
-            </div>
-
+            <div className="section-heading"><p className="eyebrow">Selected work</p><h2>Websites and systems<br />built around real work.</h2></div>
             <article className="project project-featured">
-              <a className="project-visual" href="https://kymdom.josiahpeter29.workers.dev" target="_blank" rel="noreferrer" aria-label="Open Kymdom Wedding Platform">
-                <img src="/kymdom-wedding-rsvp.png" alt="Kymdom wedding RSVP and photo platform" width="1200" height="675" />
-                <span className="visual-link"><ArrowUpRight /></span>
-              </a>
               <div className="project-copy">
-                <div className="project-meta"><span>Featured project</span><span>Full-stack development</span></div>
-                <h3>Kymdom Wedding Platform</h3>
-                <p>A bilingual wedding website with RSVP management, guest photo uploads, admin tools and face grouping.</p>
-                <ul className="outcomes">
-                  <li><Check /> English and Iban guest experience</li>
-                  <li><Check /> Cloud-native uploads and gallery delivery</li>
-                  <li><Check /> RSVP dashboard and face-assisted grouping</li>
-                </ul>
-                <div className="tags"><span>React</span><span>TypeScript</span><span>Cloudflare Workers</span><span>R2 + KV</span></div>
-                <div className="project-links">
-                  <a href="https://kymdom.josiahpeter29.workers.dev" target="_blank" rel="noreferrer">View live product <ArrowUpRight size={17} /></a>
-                  <a href="https://github.com/Syn857/weddingRsvp" target="_blank" rel="noreferrer"><Github size={17} /> Source code</a>
-                </div>
+                <p className="project-meta">Business operations · Laravel</p>
+                <h3>CRM &amp; Operations Platform</h3>
+                <p>I built a Laravel system to bring customer data, reporting, and daily operations into one place, replacing separate processes with a connected workflow.</p>
+                <div className="tags"><span>Laravel</span><span>MySQL</span><span>REST APIs</span></div>
+              </div>
+              <div className="project-scope">
+                <h4>What I worked on</h4>
+                <ul><li>Customer data management</li><li>Reporting and operational workflows</li><li>Backend and database development</li></ul>
               </div>
             </article>
-
             <div className="client-project-grid">
               <article className="client-project">
-                <a className="client-project-image" href="https://rymba-haven.pages.dev" target="_blank" rel="noreferrer" aria-label="Open the Rymba Haven website">
-                  <img src="/rymba-haven-site.png" alt="Rymba Haven website homepage" width="1440" height="900" loading="lazy" />
+                <a className="client-project-image" href="https://kymdom.josiahpeter29.workers.dev" target="_blank" rel="noreferrer" aria-label="Open Kymdom Wedding Platform">
+                  <img src="/kymdom-wedding-rsvp.png" alt="Kymdom wedding RSVP and photo platform" width="1280" height="720" loading="lazy" />
                   <span className="visual-link"><ArrowUpRight /></span>
                 </a>
                 <div className="client-project-copy">
-                  <div className="project-meta"><span>02</span><span>Venue website and CMS</span></div>
-                  <h3>Rymba Haven</h3>
-                  <p>A multi-page website for a garden event venue in Nilai. It includes venue information, packages, galleries, an enquiry flow, journal publishing and admin tools.</p>
-                  <div className="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Cloudflare Pages</span><span>D1</span></div>
+                  <p className="project-meta">Independent full-stack project</p><h3>Kymdom Wedding Platform</h3>
+                  <p>I built a bilingual guest experience with RSVP management and shared photo uploads. English and Iban guests can respond and contribute photos through one website.</p>
+                  <div className="tags"><span>React</span><span>TypeScript</span><span>Cloudflare</span></div>
+                  <div className="project-links">
+                    <a href="https://kymdom.josiahpeter29.workers.dev" target="_blank" rel="noreferrer">View live product <ArrowUpRight size={17} /></a>
+                    <a href="https://github.com/Syn857/weddingRsvp" target="_blank" rel="noreferrer"><Github size={17} /> Source code</a>
+                  </div>
+                </div>
+              </article>
+              <article className="client-project">
+                <a className="client-project-image" href="https://rymba-haven.pages.dev" target="_blank" rel="noreferrer" aria-label="Open the Rymba Haven website">
+                  <img src="/rymba-haven-site.png" alt="Rymba Haven website homepage" width="1265" height="712" loading="lazy" />
+                  <span className="visual-link"><ArrowUpRight /></span>
+                </a>
+                <div className="client-project-copy">
+                  <p className="project-meta">Venue website and CMS</p><h3>Rymba Haven</h3>
+                  <p>I built the venue website, enquiry flow, and publishing tools. Visitors can explore packages and galleries, while the team manages journal content through an admin interface.</p>
+                  <div className="tags"><span>JavaScript</span><span>Cloudflare Pages</span><span>D1</span></div>
                   <a className="client-project-link" href="https://rymba-haven.pages.dev" target="_blank" rel="noreferrer">Visit website <ArrowUpRight size={17} /></a>
                 </div>
               </article>
-
-              <article className="client-project">
-                <a className="client-project-image" href="https://skybay.pages.dev" target="_blank" rel="noreferrer" aria-label="Open the SkyBay Integrated website">
-                  <img src="/skybay-site.png" alt="SkyBay Integrated website homepage" width="1440" height="900" loading="lazy" />
-                  <span className="visual-link"><ArrowUpRight /></span>
-                </a>
-                <div className="client-project-copy">
-                  <div className="project-meta"><span>03</span><span>Corporate website</span></div>
-                  <h3>SkyBay Integrated</h3>
-                  <p>A responsive corporate website that organises SkyBay&apos;s IT, management and workforce services into clear service pages with a direct contact path.</p>
-                  <div className="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Responsive Design</span><span>Cloudflare Pages</span></div>
-                  <a className="client-project-link" href="https://skybay.pages.dev" target="_blank" rel="noreferrer">Visit website <ArrowUpRight size={17} /></a>
-                </div>
-              </article>
-
-              <article className="client-project">
-                <a className="client-project-image" href="https://furniture-better.pages.dev" target="_blank" rel="noreferrer" aria-label="Open the Atelier Noma storefront">
-                  <img src="/atelier-noma-site.png" alt="Atelier Noma furniture storefront homepage" width="1280" height="720" loading="lazy" />
-                  <span className="visual-link"><ArrowUpRight /></span>
-                </a>
-                <div className="client-project-copy">
-                  <div className="project-meta"><span>04</span><span>Commerce and catalog demo</span></div>
-                  <h3>Atelier Noma</h3>
-                  <p>A modern furniture storefront with an interactive product catalog and authenticated Supabase admin for creating, editing, publishing and removing products.</p>
-                  <div className="tags"><span>Next.js</span><span>TypeScript</span><span>Supabase</span><span>Cloudflare Pages</span></div>
-                  <a className="client-project-link" href="https://furniture-better.pages.dev" target="_blank" rel="noreferrer">Visit website <ArrowUpRight size={17} /></a>
-                </div>
-              </article>
-
-              <article className="client-project">
-                <a className="client-project-image" href="https://utaiaku.com" target="_blank" rel="noreferrer" aria-label="Open the Utaiaku reconstitution calculator">
-                  <img src="/utaiaku-site.png" alt="Utaiaku interactive peptide reconstitution calculator" width="1280" height="720" loading="lazy" />
-                  <span className="visual-link"><ArrowUpRight /></span>
-                </a>
-                <div className="client-project-copy">
-                  <div className="project-meta"><span>05</span><span>Interactive web calculator</span></div>
-                  <h3>Utaiaku Calculator</h3>
-                  <p>An interactive reconstitution calculator with unit conversion, input validation, syringe visualisation, responsive behavior and search-optimised content.</p>
-                  <div className="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Technical SEO</span><span>Cloudflare</span></div>
-                  <a className="client-project-link" href="https://utaiaku.com" target="_blank" rel="noreferrer">Visit website <ArrowUpRight size={17} /></a>
-                </div>
-              </article>
             </div>
-
-            <article className="project project-secondary">
-              <div className="project-copy">
-                <div className="project-meta"><span>06</span><span>Enterprise application</span></div>
-                <h3>CRM & Operations Platform</h3>
-                <p>A Laravel system for customer data, reporting and day-to-day operations. It gives the team one place to manage work that previously lived across separate processes.</p>
-                <div className="tags"><span>Laravel</span><span>PHP</span><span>MySQL</span><span>JavaScript</span><span>REST APIs</span></div>
+            <details className="more-work">
+              <summary>More work <span>3 additional projects</span></summary>
+              <div className="more-work-list">
+                {moreProjects.map((project) => (
+                  <article key={project.title}><h3><a href={project.href} target="_blank" rel="noreferrer">{project.title} <ArrowUpRight size={18} /></a></h3><p>{project.text}</p></article>
+                ))}
               </div>
-              <div className="system-summary"><span>Behind the interface</span><p>Customer data.<br />Daily operations.<br />One connected system.</p><small>Laravel / MySQL / REST APIs</small></div>
-            </article>
+            </details>
           </div>
         </section>
 
         <section className="section expertise-section" id="expertise">
           <div className="container">
-            <div className="section-heading"><p className="eyebrow">How I can help</p><h2>From the interface<br />to the infrastructure.</h2></div>
+            <div className="section-heading"><p className="eyebrow">Services</p><h2>Where I can help.</h2></div>
             <div className="capability-grid">
-              {capabilities.map(({ title, text, tools }) => (
-                <article className="capability-card" key={title}>
-                  <h3>{title}</h3><p>{text}</p><small>{tools}</small>
-                </article>
-              ))}
+              {capabilities.map(({ title, text }) => <article className="capability-card" key={title}><h3>{title}</h3><p>{text}</p></article>)}
             </div>
-          </div>
-        </section>
-
-        <section className="section agency-section" id="agency-support">
-          <div className="container">
-            <div className="agency-intro">
-              <div>
-                <p className="eyebrow">For agencies</p>
-                <h2>Your extra pair<br />of expert hands.</h2>
-              </div>
-              <p>
-                I support agencies that need reliable WordPress and Laravel delivery without adding a full-time hire. Bring me in for a contained rescue, a performance sprint, or a defined build block.
-              </p>
-            </div>
-
-            <div className="agency-grid">
-              <div className="agency-promise">
-                <p className="agency-label">How I work</p>
-                <h3>Clear scope.<br />Calm delivery.</h3>
-                <ul>
-                  <li><Check /> I start with the issue, the desired outcome, and the quickest safe path forward.</li>
-                  <li><Check /> You get a written scope, delivery checkpoints, and clear handover notes.</li>
-                  <li><Check /> I can work white-label and communicate through your existing project process.</li>
-                </ul>
-                <a className="button button-primary" href={`mailto:${EMAIL}?subject=Agency%20delivery%20support`}>
-                  Discuss a project <ArrowUpRight size={18} />
-                </a>
-              </div>
-
-              <div className="agency-offer-list">
-                {agencyOffers.map((offer) => (
-                  <article className="agency-offer" key={offer.number}>
-                    <div><span>{offer.number}</span><strong>{offer.price}</strong></div>
-                    <h3>{offer.title}</h3>
-                    <p>{offer.text}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
-
-            <div className="agency-footer-note">
-              <span>White-label delivery blocks available for WordPress, Laravel, custom workflows, integrations, performance, and technical SEO.</span>
-              <a href="/agency-support/">View agency delivery overview <ArrowUpRight size={16} /></a>
-            </div>
+            <aside className="agency-note" aria-label="Agency support">
+              <p><strong>Need white-label support?</strong> Bring me into your agency&apos;s workflow for a scoped fix, performance sprint, or custom build.</p>
+              <a href="/agency-support/">Agency services &amp; pricing <ArrowUpRight size={17} /></a>
+            </aside>
           </div>
         </section>
 
         <section className="section experience-section" id="experience">
           <div className="container experience-grid">
             <div className="experience-intro">
-              <p className="eyebrow">Experience</p>
-              <h2>A decade of<br />making it work.</h2>
-              <p>My work covers frontend development, backend systems, databases, integrations and deployment.</p>
-              <a href="/Josiah_Peter_James_CV.pdf" target="_blank" rel="noreferrer">Download résumé <ArrowUpRight size={17} /></a>
+              <p className="eyebrow">Experience</p><h2>Building since 2015.</h2>
+              <p>From mobile development to business-critical web applications. Also open to remote development roles.</p>
+              <a href="/Josiah_Peter_James_CV.pdf" target="_blank" rel="noreferrer">View résumé <ArrowUpRight size={17} /></a>
             </div>
             <div className="timeline">
-              {experience.map((item) => (
-                <article className="timeline-item" key={`${item.company}-${item.period}`}>
-                  <time>{item.period}</time>
-                  <div><h3>{item.role}</h3><h4>{item.company}</h4><p>{item.detail}</p></div>
-                </article>
-              ))}
+              {experience.map((item) => <article className="timeline-item" key={item.company}><span>{item.period}</span><div><h3>{item.role}</h3><p>{item.company}</p></div></article>)}
             </div>
           </div>
         </section>
 
         <section className="contact-section" id="contact">
           <div className="container contact-inner">
-            <p className="eyebrow">Contact</p>
-            <h2>Have something<br />worth building?</h2>
-            <p>Send me a short note about the project or role. I&apos;ll reply by email.</p>
+            <p className="eyebrow">Contact</p><h2>What are you<br />working on?</h2>
+            <p>Tell me what you need built or fixed, and your timeline. I&apos;ll reply by email.</p>
             <a className="contact-email" href={`mailto:${EMAIL}`}>{EMAIL} <ArrowUpRight /></a>
             <div className="social-links">
               <a href="https://wa.me/60146262616" target="_blank" rel="noreferrer" aria-label="Message Josiah on WhatsApp"><MessageCircle size={18} /> WhatsApp</a>
@@ -336,7 +175,6 @@ function App() {
           </div>
         </section>
       </main>
-
       <footer><div className="container"><span>© {new Date().getFullYear()} Josiah Peter James</span><span>Built with care in Kuching, Malaysia.</span><a href="#top">Back to top ↑</a></div></footer>
     </div>
   );

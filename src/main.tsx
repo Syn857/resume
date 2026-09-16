@@ -1,12 +1,17 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import { Toaster } from 'sonner';
+import { createRoot, hydrateRoot } from "react-dom/client";
 import App from "./App";
 import "./index.css";
 
-createRoot(document.getElementById("root")!).render(
+const root = document.getElementById("root")!;
+const app = (
   <StrictMode>
     <App />
-    <Toaster />
   </StrictMode>
 );
+
+if (root.hasChildNodes()) {
+  hydrateRoot(root, app);
+} else {
+  createRoot(root).render(app);
+}
