@@ -16,7 +16,10 @@ assert.ok(person.sameAs.includes('https://www.linkedin.com/in/josiahpeterjames/'
 for(const html of [home,agency]){
  assert.doesNotMatch(html,/profile\.jpg/);
  assert.match(html,/<html lang="en">/);
- assert.match(html,/<meta name="description" content="[^"]+"/);
+ assert.match(html, /<meta name="description" content="[^"]+"/);
+ assert.match(html, /<link rel="preconnect" href="https:\/\/fonts.gstatic.com" crossorigin/);
+ assert.match(html, /<link rel="stylesheet" href="https:\/\/fonts.googleapis.com\/css2/);
+ assert.doesNotMatch(html, /@import/);
  assert.match(html,/<meta property="og:image" content="https:\/\/josiah-peter-james.pages.dev\/social-card.png"/);
 }
 console.log('PASS: Search Console verification, search title, linked profile schema and sharing metadata');

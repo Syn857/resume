@@ -34,7 +34,7 @@ function App() {
         if (event.key === "Escape" && menuOpen) { closeMenu(); menuButton.current?.focus(); }
       }}>
         <div className="container header-inner">
-          <a className="brand" href="#top" aria-label="jpj. Josiah Peter James Full-stack developer, home" onClick={closeMenu}>
+          <a className="brand" href="#top" onClick={closeMenu}>
             <span className="brand-mark" aria-hidden="true">jpj.</span><span>Josiah Peter James<small>Full-stack developer</small></span>
           </a>
           <button className="menu-button" ref={menuButton} type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"}

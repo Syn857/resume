@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap');
 :root { font-family: 'DM Sans', sans-serif; color: #202a38; background: #f8f7f3; font-synthesis: none; text-rendering: optimizeLegibility; --ink: #202a38; --muted: #5b626c; --paper: #f8f7f3; --white: #fff; --line: #dcdedb; --accent: #356152; --soft: #eeeee8; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 110px; }

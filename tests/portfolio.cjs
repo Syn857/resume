@@ -52,7 +52,7 @@ const baseURL = process.env.PORTFOLIO_URL || 'http://localhost:5173';
       await page.setViewportSize({ width, height: 1000 });
       await page.goto(baseURL);
       await page.evaluate(() => document.fonts.ready);
-      const accessibility = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+      const accessibility = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa']).analyze();
       assert.deepEqual(accessibility.violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.target) })), [], `Accessibility at ${width}px`);
       assert.equal(await page.locator('img[src*="profile"]').count(), 0);
       for (const href of ['#work', '#expertise', '#experience', '#contact', '#top']) assert.ok(await page.locator(href).count());
