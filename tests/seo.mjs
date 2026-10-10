@@ -10,6 +10,7 @@ for (const html of [home, agency]) {
   assert.equal((html.match(/<h1\b/g) || []).length, 1, 'Content must exist in initial HTML');
   assert.match(html, /<link rel="canonical" href="https:\/\/josiah-peter-james.pages.dev\//);
   assert.doesNotMatch(html, /content="noindex/);
+  assert.match(html, /<link rel="icon" type="image\/svg\+xml" href="\/favicon.svg" \/>/);
   for (const match of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) JSON.parse(match[1]);
 }
 assert.match(home, /CRM &amp; Operations Platform/);

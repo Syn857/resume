@@ -34,7 +34,7 @@ function App() {
         if (event.key === "Escape" && menuOpen) { closeMenu(); menuButton.current?.focus(); }
       }}>
         <div className="container header-inner">
-          <a className="brand" href="#top" aria-label="Josiah Peter James, home" onClick={closeMenu}>
+          <a className="brand" href="#top" aria-label="jpj. Josiah Peter James Full-stack developer, home" onClick={closeMenu}>
             <span className="brand-mark" aria-hidden="true">jpj.</span><span>Josiah Peter James<small>Full-stack developer</small></span>
           </a>
           <button className="menu-button" ref={menuButton} type="button" aria-label={menuOpen ? "Close navigation" : "Open navigation"}
@@ -71,7 +71,7 @@ function App() {
           <div className="container">
             <div className="section-heading"><div><p className="eyebrow">01 / Selected work</p><h2 id="work-heading">A look at the work.</h2></div><p>Public projects and business systems.<br />What I built, and what it does.</p></div>
             {projects.map(project => <article className="case-study" key={project.title}>
-              <a className="project-image" href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`}>
+              <a className="project-image" href={project.href} target="_blank" rel="noreferrer" aria-label={`${project.title} / Live website — Open project`}>
                 <div className="browser-bar" aria-hidden="true"><span>{project.title} / Live website</span><ArrowUpRight size={14} /></div>
                 <img src={project.image} alt={project.alt} width={project.width} height={project.height} loading="lazy" />
               </a>
