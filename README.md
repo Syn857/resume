@@ -17,7 +17,9 @@ npm run build
 npm run preview -- --port 5173
 ```
 
-Build runs `tests/seo.mjs` to check prerendered content, distinct titles, canonical URLs, schema, assets, sitemap, and the 404 page. With Playwright and Edge available, run `node tests/portfolio.cjs` against the preview to check hydration, no-JavaScript content, responsive layout, and keyboard navigation. An external Playwright installation can be provided through `NODE_PATH`.
+Build runs `tests/seo.mjs` to check prerendered content, distinct titles, canonical URLs, schema, assets, sitemap, and the 404 page. Run `npm test` for redesign/content regressions. After starting the production preview on port 5173, run `npm run test:browser` for hydration, no-JavaScript content, six viewport widths, keyboard navigation and desktop/mobile axe WCAG AA checks. Browser-test dependencies are included in devDependencies. Set `CHROME_PATH` if Chrome is not at `/usr/bin/google-chrome-stable`, and `PORTFOLIO_URL` to check a deployment instead. Set `SCREENSHOT_DIR` to save desktop/mobile screenshots.
+
+The home page is portrait-free. `npm run social-card` regenerates its typography-only sharing image. Keep the public CV aligned with the applicant’s confirmed qualifications; do not restore the old Diploma wording.
 
 ## Cloudflare Pages
 
